@@ -21,5 +21,9 @@ class Inquiry extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'type' => InquiryType::class,
+    ];
+
     protected $fillable = ['name', 'email' , 'content' , 'type'];
 }
