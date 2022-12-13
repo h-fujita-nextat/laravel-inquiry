@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests;
 
 use App\Enums\InquiryType;
@@ -13,7 +15,7 @@ class InquiryStoreRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -23,7 +25,7 @@ class InquiryStoreRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => ['required', 'unique:inquiries,name', 'max:255'],
@@ -31,11 +33,11 @@ class InquiryStoreRequest extends FormRequest
             'content' => ['required', 'max:1000'],
             'type' => [
                 'required',
-                Rule::in([
-                    InquiryType::ESTIMATE->value,
-                    InquiryType::RECRUIT->value,
-                    InquiryType::OTHER->value
-                ]),
+//                Rule::in([
+//                    InquiryType::ESTIMATE->value,
+//                    InquiryType::RECRUIT->value,
+//                    InquiryType::OTHER->value
+//                ]),
             ],
         ];
     }
