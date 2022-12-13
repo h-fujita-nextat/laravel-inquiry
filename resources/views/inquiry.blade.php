@@ -49,10 +49,6 @@
                     @foreach(\App\Enums\InquiryType::cases() as $inquiryType)
                         <option value="{{ $inquiryType->value }}" @if(old('type')===$inquiryType->value) selected @endif>{{ $inquiryType->text() }}</option>
                     @endforeach
-{{--                    <option value="">選択してください</option>--}}
-{{--                    <option value="estimate" @if(old('type')==='estimate')selected @endif>お見積もり</option>--}}
-{{--                    <option value="recruit" @if(old('type')==='recruit')selected @endif>採用</option>--}}
-{{--                    <option value="other" @if(old('type')==='other')selected @endif>その他</option>--}}
                 </select>
             </div>
             {{--    送信ボタン--}}

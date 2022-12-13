@@ -15,7 +15,6 @@ use App\Http\Controllers\InquiryController;
 
 Route::prefix('inquiries')
     ->name('inquiries.')
-//    ->middleware(['auth'])
     ->group(function(){
         Route::get('/', [InquiryController::class, 'index'])->name('index');
 
@@ -28,10 +27,3 @@ Route::prefix('inquiries')
 Route::get('/', function () {
     return view('welcome');
 });
-
-//Route::get('/inquiries', [InquiryController::class, 'index']);
-//
-//Route::post('/inquiries', [InquiryController::class, 'store']);
-//
-//Route::get('/inquiries/complete', [InquiryController::class, 'complete']);
-
