@@ -15,7 +15,6 @@ use App\Http\Controllers\InquiryController;
 
 Route::prefix('inquiries')
     ->name('inquiries.')
-    ->middleware(['auth'])
     ->group(function(){
         Route::get('/', [InquiryController::class, 'index'])->name('index');
 
