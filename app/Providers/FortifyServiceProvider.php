@@ -34,6 +34,5 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::createUsersUsing(CreateNewUser::class);
 
         Fortify::viewPrefix('auth.');
-
     }
 }

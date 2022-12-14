@@ -5,7 +5,6 @@
 @endsection
 
 @section('content')
-
     <h1>ユーザ登録画面</h1>
     @if ($errors->any())
         <div>
@@ -38,5 +37,4 @@
             <button type="submit">登録</button>
         </div>
     </form>
-
 @endsection
