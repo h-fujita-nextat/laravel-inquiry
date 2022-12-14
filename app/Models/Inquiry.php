@@ -25,4 +25,5 @@ class Inquiry extends Model
         'type' => InquiryType::class,
     ];
 
+    protected $fillable = ['name', 'email' , 'content' , 'type'];
 }

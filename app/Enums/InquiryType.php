@@ -19,4 +19,9 @@ enum InquiryType: string
             self::OTHER => 'その他',
         };
     }
+
+    public static function values(): array
+    {
+        return array_column(self::cases(), "value");
+    }
 }
