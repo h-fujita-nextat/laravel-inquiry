@@ -23,6 +23,12 @@ Route::prefix('inquiries')
         Route::get('/complete', [InquiryController::class, 'complete'])->name('complete');
     });
 
+Route::prefix('admin')
+    ->name('admin.')
+    ->middleware(['auth'])
+    ->group(function(){
+        Route::get('/', function(){return view('admin.index');})->name('index');
+});
 
 Route::get('/', function () {
     return view('welcome');
