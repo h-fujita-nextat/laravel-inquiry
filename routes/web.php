@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InquiryController;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,7 +28,8 @@ Route::prefix('admin')
     ->name('admin.')
     ->middleware(['auth'])
     ->group(function(){
-        Route::get('/', function(){return view('admin.index');})->name('index');
+        Route::get('/inquiries', [AdminController::class, 'index'])->name('index');
+        Route::get('/inquiries/{id}', [AdminController::class, 'show'])->name('show');
 });
 
 Route::get('/', function () {

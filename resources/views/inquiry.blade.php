@@ -43,7 +43,7 @@
                 @endforeach
             @endif
             <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">お問い合わせ項目</label>
+                <label for="exampleFormControlTextarea1" class="form-label">お問い合わせ種別</label>
                 <select class="form-select" aria-label="Default select example" name="type">
                     <option value="">選択してください</option>
                     @foreach(\App\Enums\InquiryType::cases() as $inquiryType)
