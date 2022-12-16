@@ -7,6 +7,14 @@
 @section('content')
     <p class="h1 d-flex justify-content-center mt-3">管理者ダッシュボード</p>
 
+    @if( count($errors) )
+        <ul>
+            @foreach($errors->all() as $error)
+                <li class="text-danger">{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
+
     <div style="margin: 24px 48px">
         <table class="table">
             <thead>
