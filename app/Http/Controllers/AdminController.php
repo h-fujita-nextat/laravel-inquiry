@@ -20,13 +20,19 @@ class AdminController extends Controller
     private const PER_PAGE = 10;
 
     /**
+     * 初期ページ
+     */
+    private const DEFAULT_PAGE = 1;
+
+    /**
      * @param IndexGet $request
      * @return View
      */
     public function index(IndexGet $request): View
     {
+        $page = $request->validated('page') ?? self::DEFAULT_PAGE;
         $inquiries = Inquiry::query()->orderBy('created_at', 'desc')
-            ->paginate(self::PER_PAGE, ['*'], 'page', null);
+            ->paginate(self::PER_PAGE, ['*'], 'page', $page);
 
         return view('admin.index', compact('inquiries'));
     }
