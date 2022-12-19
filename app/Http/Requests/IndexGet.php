@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests;
 
 use App\Models\Inquiry;
@@ -30,27 +32,10 @@ class IndexGet extends FormRequest
         ];
     }
 
-    public function messages(){
+    public function messages()
+    {
         return [
-            'page.integer'  => 'pageには整数を指定してください。',
+            'page.integer' => 'pageには整数を指定してください。',
         ];
     }
-
-//    protected function failedValidation(Validator $validator)
-//    {
-//        ///
-//    }
-//
-//    public function all($keys = null): array
-//    {
-//        $attribute = parent::all($keys);
-//
-//        logger($attribute);
-//        return $attribute;
-//    }
-//
-//    public function getValidator()
-//    {
-//        return $this->validator;
-//    }
 }

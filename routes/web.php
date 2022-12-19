@@ -18,9 +18,7 @@ Route::prefix('inquiries')
     ->name('inquiries.')
     ->group(function(){
         Route::get('/', [InquiryController::class, 'index'])->name('index');
-
         Route::post('/', [InquiryController::class, 'store'])->name('store');
-
         Route::get('/complete', [InquiryController::class, 'complete'])->name('complete');
     });
 

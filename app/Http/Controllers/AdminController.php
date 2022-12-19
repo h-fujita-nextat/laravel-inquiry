@@ -6,7 +6,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\IndexGet;
 use App\Models\Inquiry;
-use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 /**
@@ -15,14 +14,19 @@ use Illuminate\View\View;
  */
 class AdminController extends Controller
 {
+    /**
+     * 1ページあたりの表示件数
+     */
     private const PER_PAGE = 10;
 
     /**
+     * @param IndexGet $request
      * @return View
      */
-    public function index(IndexGet $request)
+    public function index(IndexGet $request): View
     {
-        $inquiries = Inquiry::orderBy('created_at', 'desc')->paginate(self::PER_PAGE);
+        $inquiries = Inquiry::query()->orderBy('created_at', 'desc')
+            ->paginate(self::PER_PAGE, ['*'], 'page', null);
 
         return view('admin.index', compact('inquiries'));
     }
@@ -33,7 +37,7 @@ class AdminController extends Controller
      */
     public function show(int $id): View
     {
-        $inquiry = Inquiry::findOrFail($id);
+        $inquiry = Inquiry::query()->findOrFail($id);
 
         return view('admin.show', compact('inquiry'));
     }

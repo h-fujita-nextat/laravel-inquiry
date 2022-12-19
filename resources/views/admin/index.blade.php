@@ -28,22 +28,25 @@
             </tr>
             </thead>
             <tbody>
+            @php
+                /** @var Illuminate\Support\Collection<App\Models\Inquiry> $inquiries */
+            @endphp
             @foreach ($inquiries as $inquiry)
-            <tr>
-                <th scope="row"><a href="{{ route('admin.show' , $inquiry->id) }}">{{$inquiry->id}}</a></th>
-                <td>{{$inquiry->name}}</td>
-                <td>{{$inquiry->email}}</td>
-                <td>{{$inquiry->content}}</td>
-                <td>{{$inquiry->type->text()}}</td>
-                <td>{{$inquiry->created_at}}</td>
-            </tr>
+                <tr>
+                    <th scope="row"><a href="{{ route('admin.show', $inquiry->id) }}">{{$inquiry->id}}</a></th>
+                    <td>{{$inquiry->name}}</td>
+                    <td>{{$inquiry->email}}</td>
+                    <td>{{$inquiry->content}}</td>
+                    <td>{{$inquiry->type->text()}}</td>
+                    <td>{{$inquiry->created_at}}</td>
+                </tr>
             @endforeach
             </tbody>
         </table>
     </div>
 
     <div class="d-flex justify-content-center">
-    {{ $inquiries->links('pagination::bootstrap-4') }}
+        {{ $inquiries->links('pagination::bootstrap-4') }}
     </div>
 
     <form method="POST" action="{{ route('logout') }}">
