@@ -33,7 +33,7 @@ class InquiryStoreRequest extends FormRequest
             'content' => ['required', 'max:1000'],
             'type' => [
                 'required',
-                InquiryType::values()
+                Rule::in(InquiryType::values())
             ],
         ];
     }
