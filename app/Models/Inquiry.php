@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Enums\InquiryType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Events\InquiryCreated;
 
 /**
  * @package App\Models
@@ -25,5 +26,5 @@ class Inquiry extends Model
         'type' => InquiryType::class,
     ];
 
-    protected $fillable = ['name', 'email' , 'content' , 'type'];
+    protected $fillable = ['name', 'email', 'content', 'type'];
 }
