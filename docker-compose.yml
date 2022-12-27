@@ -46,10 +46,12 @@ services:
             retries: 3
             timeout: 5s
 
-    container_mailhog:
+    mailhog:
         image: mailhog/mailhog
         ports:
             - 8025:8025
+        networks:
+            - sail
 networks:
     sail:
         driver: bridge
