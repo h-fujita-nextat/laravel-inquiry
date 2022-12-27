@@ -7,7 +7,6 @@ namespace App\Models;
 use App\Enums\InquiryType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Events\InquiryCreated;
 
 /**
  * @package App\Models
