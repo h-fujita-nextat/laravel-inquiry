@@ -6,8 +6,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\InquiryStoreRequest;
 use App\Models\Inquiry;
+use App\Models\User;
+use App\Services\InquiryService;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 /**
@@ -17,6 +18,20 @@ use Illuminate\View\View;
  */
 class InquiryController extends Controller
 {
+    /**
+     * @var InquiryService
+     */
+    private InquiryService $inquiryService;
+
+    /**
+     * @param InquiryService $inquiryService
+     */
+    public function __construct(
+        InquiryService $inquiryService
+    ) {
+        $this->inquiryService = $inquiryService;
+    }
+
     /**
      * @return View
      */
@@ -36,6 +51,13 @@ class InquiryController extends Controller
         $inquiry = new Inquiry();
         $inquiry->fill($validated);
         $inquiry->save();
+
+        $users = User::all();
+        $users->each(
+            function (User $user) use ($inquiry) {
+                $this->inquiryService->send($user, $inquiry);
+            }
+        );
 
         return redirect()->route("inquiries.complete");
     }
