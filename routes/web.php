@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminUserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,7 +29,10 @@ Route::prefix('admin')
     ->group(function(){
         Route::get('/inquiries', [AdminController::class, 'index'])->name('index');
         Route::get('/inquiries/{id}', [AdminController::class, 'show'])->name('show');
-});
+        Route::get('/users', [AdminUserController::class, 'index'])->name('index');
+
+    });
+
 
 Route::get('/', function () {
     return view('welcome');

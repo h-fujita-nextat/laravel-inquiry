@@ -8,7 +8,7 @@
     <div style="margin: 100px;">
         <form action="{{ route('inquiries.store') }}" method="post">
             @csrf
-            {{--名前--}}
+            {{-- 名前 --}}
             <div class="mb-3">
                 <label for="formGroupExampleInput" class="form-label">名前</label>
                 @if($errors->has('name'))
@@ -18,7 +18,7 @@
                 @endif
                 <input type="text" class="form-control" id="formGroupExampleInput" placeholder="テスト 太郎" name="name" value="{{ old('name') }}">
             </div>
-            {{--メアド--}}
+            {{-- メアド --}}
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">メールアドレス</label>
                 @if($errors->has('email'))
@@ -28,7 +28,7 @@
                 @endif
                 <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="test@example.com" name="email" value="{{ old('email') }}">
             </div>
-            {{--詳細--}}
+            {{-- 詳細 --}}
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">お問い合わせ内容</label>
                 @if($errors->has('content'))
@@ -36,7 +36,7 @@
                 @endif
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="お問い合わせ内容を記入してください。" name="content">{{ old('content') }}</textarea>
             </div>
-            {{--セレクトボックス--}}
+            {{-- セレクトボックス --}}
             @if($errors->has('type'))
                 @foreach($errors->get('type') as $message)
                     <span class="text-danger">{{ $message }}</span>
@@ -51,7 +51,7 @@
                     @endforeach
                 </select>
             </div>
-            {{--    送信ボタン--}}
+            {{-- 送信ボタン --}}
             <div class="col text-center">
                 <button type="submit" class="btn btn-secondary" style="margin: 50px 0;">送信</button>
             </div>
