@@ -39,18 +39,17 @@
                     <td>{{$user->email}}</td>
                     <td>{{$user->email_verified_at}}</td>
                     <td>
+                        <!-- TODO 詳細実装時に -->
                         <button type="button" class="btn btn-secondary">詳細</button>
                     </td>
                     <td>
+                        <!-- TODO 削除実装時に -->
                         <button type="button" class="btn btn-secondary">削除</button>
                     </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
-    </div>
-
-    <div class="d-flex justify-content-center">
     </div>
 
     <div class="d-flex justify-content-center">

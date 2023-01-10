@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\IndexGet;
+use App\Http\Requests\User\IndexGet;
 use App\Models\User;
 use Illuminate\View\View;
 
@@ -27,8 +27,7 @@ class AdminUserController extends Controller
     public function index(IndexGet $request): View
     {
         $page = $request->validated('page') ?? self::DEFAULT_PAGE;
-        $users = User::query()->orderBy('email_verified_at', 'desc')
-            ->paginate(self::PER_PAGE, ['*'], 'page', $page);
+        $users = User::query()->paginate(self::PER_PAGE, ['*'], 'page', $page);
 
         return view('adminUsers.index', compact('users'));
     }
