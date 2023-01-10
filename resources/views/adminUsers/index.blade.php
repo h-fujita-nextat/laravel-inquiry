@@ -22,6 +22,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">名前</th>
                 <th scope="col">メールアドレス</th>
+                <th scope="col">作成日</th>
                 <th scope="col">詳細</th>
                 <th scope="col">削除</th>
             </tr>
@@ -33,12 +34,16 @@
             @foreach ($users as $user)
                 <tr>
                     <!-- TODO routeは詳細実装時に -->
-                    <th scope="row"><a href="{{ route('###', $user->id) }}">{{$user->id}}</a></th>
+                    <th scope="row"><a href=aaa>{{$user->id}}</a></th>
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->email_verified_at}}</td>
-                    <td><button type="button" class="btn btn-secondary">詳細</button></td>
-                    <td><button type="button" class="btn btn-secondary">削除</button></td>
+                    <td>
+                        <button type="button" class="btn btn-secondary">詳細</button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-secondary">削除</button>
+                    </td>
                 </tr>
             @endforeach
             </tbody>
@@ -46,6 +51,10 @@
     </div>
 
     <div class="d-flex justify-content-center">
+    </div>
+
+    <div class="d-flex justify-content-center">
+        {{ $users->links('pagination::bootstrap-4') }}
     </div>
 
     <form method="POST" action="{{ route('logout') }}">
