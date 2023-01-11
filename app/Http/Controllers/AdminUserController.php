@@ -34,6 +34,11 @@ class AdminUserController extends Controller
         return view('adminUsers.index', compact('users'));
     }
 
+    public function create(AdminUserStoreRequest $request)
+    {
+        return view("adminUsers.create");
+    }
+
     /**
      * @param AdminUserStoreRequest $request
      * @return \Illuminate\Http\RedirectResponse
@@ -46,7 +51,7 @@ class AdminUserController extends Controller
         $user->fill($validated);
         $user->save();
 
-        return redirect()->route("adminUsers.register");
+        return redirect()->route("adminUsers.complete");
     }
 
     /**
