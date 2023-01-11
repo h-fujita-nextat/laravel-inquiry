@@ -30,6 +30,8 @@ Route::prefix('admin')
         Route::get('/inquiries', [AdminController::class, 'index'])->name('index');
         Route::get('/inquiries/{id}', [AdminController::class, 'show'])->name('show');
         Route::get('/users', [AdminUserController::class, 'index'])->name('index');
+        Route::get('/users/register', [AdminUserController::class, 'store'])->name('store');
+        Route::get('/users/register/complete', [AdminUserController::class, 'complete'])->name('complete');
 
     });
 
