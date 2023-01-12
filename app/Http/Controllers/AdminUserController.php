@@ -56,4 +56,9 @@ class AdminUserController extends Controller
 
         return redirect()->route("admin.users.index")->with('flash_message', '登録が完了しました。');
     }
+
+    public function update(StorePost $request)
+    {
+        return view('adminUsers.show');
+    }
 }
