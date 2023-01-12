@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\User\AdminUserStoreRequest;
+use App\Http\Requests\User\StorePost;
 use App\Http\Requests\User\IndexGet;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -43,10 +43,10 @@ class AdminUserController extends Controller
     }
 
     /**
-     * @param AdminUserStoreRequest $request
+     * @param StorePost $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(AdminUserStoreRequest $request): RedirectResponse
+    public function store(StorePost $request): RedirectResponse
     {
         $validated = $request->validated();
 

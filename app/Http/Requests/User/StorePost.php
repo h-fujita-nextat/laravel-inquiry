@@ -6,7 +6,7 @@ namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AdminUserStoreRequest extends FormRequest
+class StorePost extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -32,7 +32,10 @@ class AdminUserStoreRequest extends FormRequest
         ];
     }
 
-    public function attributes()
+    /**
+     * @return string[]
+     */
+    public function attributes(): array
     {
         return [
             'name' => '名前の入力',
