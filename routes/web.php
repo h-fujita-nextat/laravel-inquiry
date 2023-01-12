@@ -29,10 +29,13 @@ Route::prefix('admin')
     ->group(function(){
         Route::get('/inquiries', [AdminController::class, 'index'])->name('index');
         Route::get('/inquiries/{id}', [AdminController::class, 'show'])->name('show');
-        Route::get('/users', [AdminUserController::class, 'index'])->name('index');
-        Route::get('/users', [AdminUserController::class, 'store'])->name('store');
-        Route::get('/users/create', [AdminUserController::class, 'create'])->name('create');
-        Route::get('/users/create/complete', [AdminUserController::class, 'complete'])->name('complete');
+        Route::prefix('users')
+            ->name('users.')
+            ->group(function(){
+                Route::get('/', [AdminUserController::class, 'index'])->name('index');
+                Route::get('/create', [AdminUserController::class, 'create'])->name('create');
+                Route::post('/', [AdminUserController::class, 'store'])->name('store');
+            });
     });
 
 

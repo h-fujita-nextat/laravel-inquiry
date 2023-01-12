@@ -26,8 +26,8 @@ class AdminUserStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'unique:user,name', 'max:255'],
-            'email' => ['required', 'unique:user,email', 'max:255'],
+            'name' => ['required', 'unique:users,name', 'max:255'],
+            'email' => ['required', 'unique:users,email', 'max:255'],
             'password' => ['required', 'max:255'],
         ];
     }

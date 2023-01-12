@@ -7,7 +7,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\User\AdminUserStoreRequest;
 use App\Http\Requests\User\IndexGet;
 use App\Models\User;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class AdminUserController extends Controller
@@ -34,7 +34,10 @@ class AdminUserController extends Controller
         return view('adminUsers.index', compact('users'));
     }
 
-    public function create(AdminUserStoreRequest $request)
+    /**
+     * @return View
+     */
+    public function create(): View
     {
         return view("adminUsers.create");
     }
@@ -43,7 +46,7 @@ class AdminUserController extends Controller
      * @param AdminUserStoreRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(AdminUserStoreRequest $request)
+    public function store(AdminUserStoreRequest $request): RedirectResponse
     {
         $validated = $request->validated();
 
@@ -51,14 +54,6 @@ class AdminUserController extends Controller
         $user->fill($validated);
         $user->save();
 
-        return redirect()->route("adminUsers.complete");
-    }
-
-    /**
-     * @return View
-     */
-    public function complete(): View
-    {
-        return view('adminUsers.complete');
+        return redirect()->route("admin.users.index")->with('flash_message', '登録が完了しました。');
     }
 }

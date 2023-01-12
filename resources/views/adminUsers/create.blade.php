@@ -6,7 +6,7 @@
 
 @section('content')
     <div style="margin: 100px;">
-        <form action="{{ route('AdminUser.store') }}" method="post">
+        <form action="{{ route('admin.users.store') }}" method="post">
             @csrf
             {{-- 名前 --}}
             <div class="mb-3">
@@ -36,7 +36,7 @@
                         <span class="text-danger">{{ $message }}</span>
                     @endforeach
                 @endif
-                <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="test@example.com" name="password" value="{{ old('password') }}">
+                <input type="password" class="form-control" id="exampleFormControlInput1" name="password">
             </div>
             {{-- 送信ボタン --}}
             <div class="col text-center">
