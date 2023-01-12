@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\StorePost;
 use App\Http\Requests\User\IndexGet;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class AdminUserController extends Controller
@@ -30,5 +32,28 @@ class AdminUserController extends Controller
         $users = User::query()->paginate(self::PER_PAGE, ['*'], 'page', $page);
 
         return view('adminUsers.index', compact('users'));
+    }
+
+    /**
+     * @return View
+     */
+    public function create(): View
+    {
+        return view("adminUsers.create");
+    }
+
+    /**
+     * @param StorePost $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(StorePost $request): RedirectResponse
+    {
+        $validated = $request->validated();
+
+        $user = new User();
+        $user->fill($validated);
+        $user->save();
+
+        return redirect()->route("admin.users.index")->with('flash_message', '登録が完了しました。');
     }
 }
