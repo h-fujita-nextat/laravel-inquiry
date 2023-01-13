@@ -57,6 +57,10 @@ class AdminUserController extends Controller
         return redirect()->route("admin.users.index")->with('flash_message', '登録が完了しました。');
     }
 
+    /**
+     * @param int $id
+     * @return View
+     */
     public function edit(int $id): View
     {
         $user = User::query()->findOrFail($id);

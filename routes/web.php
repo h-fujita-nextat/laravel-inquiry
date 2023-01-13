@@ -36,7 +36,7 @@ Route::prefix('admin')
                 Route::get('/create', [AdminUserController::class, 'create'])->name('create');
                 Route::post('/', [AdminUserController::class, 'store'])->name('store');
                 Route::get('/{id}/edit', [AdminUserController::class, 'edit'])->name('edit');
-                Route::put('/{id}/edit', [AdminUserController::class, 'update'])->name('update');
+                Route::put('/{id}', [AdminUserController::class, 'update'])->name('update');
             });
     });
 
