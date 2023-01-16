@@ -72,13 +72,13 @@ class AdminUserController extends Controller
     /**
      * @return RedirectResponse
      */
-    public function update(int $id): RedirectResponse
+    public function update(UpdatePut $request, User $user): RedirectResponse
     {
         $validated = $request->validated();
         $user->fill($validated);
         $user->save();
 
-        return redirect(route('admin.users.index'))->with('flash_message', '更新が完了しました。');
+        return redirect(route('admin.users.index'))->with('flash_message', '更新しました。');
     }
 
     /**
