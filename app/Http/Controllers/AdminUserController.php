@@ -82,6 +82,6 @@ class AdminUserController extends Controller
         $user->fill($validated);
         $user->save();
 
-        return redirect(route('admin.users.index'))->with('flash_message', '登録が完了しました。');
+        return redirect(route('admin.users.index'))->with('flash_message', '更新が完了しました。');
     }
 }

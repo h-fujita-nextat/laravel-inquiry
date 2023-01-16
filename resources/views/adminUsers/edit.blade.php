@@ -9,7 +9,9 @@
 @section('content')
     <div class="d-flex justify-content-center" style="margin-top: 100px">
         <div class="card" style="width: 48rem;">
-            <form action="{{ route('admin.users.update', $user) }}" method="put">
+            <form action="{{ route('admin.users.update', $user) }}" method="PUT">
+                @csrf
+                @method('PUT')
                 <div class="card-body">
                     <ul class="list-group">
                         <li class="list-group-item">
@@ -20,7 +22,7 @@
                         </li>
                         <li class="list-group-item">作成日：{{$user->created_at}}</li>
                     </ul>
-                    <a href="{{ route('admin.users.update', $user) }}" class="btn btn-primary d-flex justify-content-center mt-3">更新</a>
+                    <button type="submit" class="btn btn-primary mt-3">更新</button>
                 </div>
             </form>
             <a href="{{ route('admin.users.index') }}" class="btn btn btn-secondary d-flex justify-content-center mt-3">管理ユーザー一覧に戻る</a>
