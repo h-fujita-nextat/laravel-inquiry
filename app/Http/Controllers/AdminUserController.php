@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\User\StorePost;
 use App\Http\Requests\User\IndexGet;
+use App\Http\Requests\User\UpdatePut;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
@@ -66,5 +67,21 @@ class AdminUserController extends Controller
         $user = User::query()->findOrFail($id);
 
         return view('adminUsers.edit', compact('user'));
+    }
+
+    /**
+     * @param UpdatePut $request
+     * @param User $user
+     * @return \Illuminate\Contracts\Foundation\Application|RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function update(UpdatePut $request, User $user): Redirector
+    {
+        $validated = $request->validated();
+
+        $user = new User();
+        $user->fill($validated);
+        $user->save();
+
+        return redirect(route('admin.users.index'))->with('flash_message', '登録が完了しました。');
     }
 }
