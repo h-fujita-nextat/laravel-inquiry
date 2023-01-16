@@ -70,17 +70,14 @@ class AdminUserController extends Controller
     }
 
     /**
-     * @param UpdatePut $request
-     * @param User $user
-     * @return \Illuminate\Contracts\Foundation\Application|RedirectResponse|\Illuminate\Routing\Redirector
+     * @return RedirectResponse
      */
-    public function update(UpdatePut $request, User $user): Redirector
+    public function update(int $id): RedirectResponse
     {
-        $validated = $request->validated();
-
-        $user = new User();
-        $user->fill($validated);
-        $user->save();
+        dd($id);
+//        $validated = $request->validated();
+//        $user->fill($validated);
+//        $user->save();
 
         return redirect(route('admin.users.index'))->with('flash_message', '更新が完了しました。');
     }

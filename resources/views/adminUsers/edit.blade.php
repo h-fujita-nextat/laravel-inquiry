@@ -4,14 +4,14 @@
     管理ユーザー詳細
 @endsection
 @php
-    /** @var Illuminate\Support\Collection<App\Models\User>  $user*/
+    /** @var App\Models\User $user */
 @endphp
 @section('content')
     <div class="d-flex justify-content-center" style="margin-top: 100px">
         <div class="card" style="width: 48rem;">
-            <form action="{{ route('admin.users.update', $user) }}" method="PUT">
-                @csrf
+            <form action="{{ route('admin.users.update', $user->id) }}" method="post">
                 @method('PUT')
+                @csrf
                 <div class="card-body">
                     <ul class="list-group">
                         <li class="list-group-item">
