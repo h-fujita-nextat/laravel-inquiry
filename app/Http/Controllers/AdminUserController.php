@@ -74,11 +74,22 @@ class AdminUserController extends Controller
      */
     public function update(int $id): RedirectResponse
     {
-        dd($id);
-//        $validated = $request->validated();
-//        $user->fill($validated);
-//        $user->save();
+        $validated = $request->validated();
+        $user->fill($validated);
+        $user->save();
 
         return redirect(route('admin.users.index'))->with('flash_message', '更新が完了しました。');
+    }
+
+    /**
+     * @param $id
+     * @return RedirectResponse
+     */
+    public function destroy($id): RedirectResponse
+    {
+        $user = User::query()->find($id);
+        $user->delete();
+
+        return redirect()->route('admin.users.index')->with('flash_message', '削除しました。');
     }
 }
