@@ -72,8 +72,9 @@ class AdminUserController extends Controller
     /**
      * @return RedirectResponse
      */
-    public function update(UpdatePut $request, User $user): RedirectResponse
+    public function update(UpdatePut $request, int $id): RedirectResponse
     {
+        $user = User::query()->findOrFail($id);
         $validated = $request->validated();
         $user->fill($validated);
         $user->save();
