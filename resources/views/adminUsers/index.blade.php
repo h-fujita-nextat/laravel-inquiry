@@ -41,7 +41,8 @@
                         <a class="btn btn-secondary" href="{{ route('admin.users.edit', $user->id) }}">詳細</a>
                     </td>
                     <td>
-                        <form action="{{ route('admin.users.destroy', ['id'=>$user->id]) }}" method="POST">
+                        <form action="{{ route('admin.users.destroy', ['id'=>$user->id]) }}" method="post">
+                            @method('DELETE')
                             @csrf
                             <button type="submit" class="btn btn-secondary">削除</button>
                         </form>

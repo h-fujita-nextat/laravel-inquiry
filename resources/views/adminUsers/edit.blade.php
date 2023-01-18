@@ -15,10 +15,10 @@
                 <div class="card-body">
                     <ul class="list-group">
                         <li class="list-group-item">
-                            名前：<input type="name" value="{{ old('name', $user->name) }}">
+                            名前：<input type="text" name="name" value="{{ old('name', $user->name) }}">
                         </li>
                         <li class="list-group-item">
-                            メールアドレス：<input type="email" value="{{ old('email', $user->email) }}">
+                            メールアドレス：<input type="email" name="email" value="{{ old('email', $user->email) }}">
                         </li>
                         <li class="list-group-item">作成日：{{$user->created_at}}</li>
                     </ul>

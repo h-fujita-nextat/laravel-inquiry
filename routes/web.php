@@ -37,7 +37,7 @@ Route::prefix('admin')
                 Route::post('/', [AdminUserController::class, 'store'])->name('store');
                 Route::put('/{id}', [AdminUserController::class, 'update'])->name('update');
                 Route::get('/{id}/edit', [AdminUserController::class, 'edit'])->name('edit');
-                Route::post('/{id}', [AdminUserController::class, 'destroy'])->name('destroy');
+                Route::delete('/{id}', [AdminUserController::class, 'destroy'])->name('destroy');
             });
     });
 

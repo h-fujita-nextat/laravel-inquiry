@@ -85,7 +85,7 @@ class AdminUserController extends Controller
      * @param $id
      * @return RedirectResponse
      */
-    public function destroy($id): RedirectResponse
+    public function destroy(int $id): RedirectResponse
     {
         $user = User::query()->find($id);
         $user->delete();
