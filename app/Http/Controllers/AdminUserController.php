@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\User\StorePost;
 use App\Http\Requests\User\IndexGet;
+use App\Http\Requests\User\StorePost;
 use App\Http\Requests\User\UpdatePut;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -72,8 +72,10 @@ class AdminUserController extends Controller
     /**
      * @return RedirectResponse
      */
-    public function update(UpdatePut $request, User $user): RedirectResponse
+
+    public function update(UpdatePut $request, int $id): RedirectResponse
     {
+        $user = User::query()->findOrFail($id);
         $validated = $request->validated();
         $user->fill($validated);
         $user->save();
