@@ -70,6 +70,8 @@ class AdminUserController extends Controller
     }
 
     /**
+     * @param UpdatePut $request
+     * @param int $id
      * @return RedirectResponse
      */
     public function update(UpdatePut $request, int $id): RedirectResponse
