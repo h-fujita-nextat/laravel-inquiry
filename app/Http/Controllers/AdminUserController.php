@@ -90,6 +90,9 @@ class AdminUserController extends Controller
     public function destroy(int $id): RedirectResponse
     {
         $user = User::query()->find($id);
+        if (is_null($user)) {
+            abort(404);
+        }
         $user->delete();
 
         return redirect()->route('admin.users.index')->with('flash_message', '削除しました。');
