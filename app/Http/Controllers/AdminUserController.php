@@ -74,6 +74,7 @@ class AdminUserController extends Controller
      * @param int $id
      * @return RedirectResponse
      */
+
     public function update(UpdatePut $request, int $id): RedirectResponse
     {
         $user = User::query()->find($id);
@@ -85,5 +86,20 @@ class AdminUserController extends Controller
         $user->save();
 
         return redirect(route('admin.users.index'))->with('flash_message', '更新しました。');
+    }
+
+    /**
+     * @param $id
+     * @return RedirectResponse
+     */
+    public function destroy(int $id): RedirectResponse
+    {
+        $user = User::query()->find($id);
+        if (is_null($user)) {
+            abort(404);
+        }
+        $user->delete();
+
+        return redirect()->route('admin.users.index')->with('flash_message', '削除しました。');
     }
 }
