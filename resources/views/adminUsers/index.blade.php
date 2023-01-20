@@ -33,18 +33,16 @@
             @endphp
             @foreach ($users as $user)
                 <tr>
-                    <!-- TODO routeは詳細実装時に -->
-                    <th scope="row"><a href=aaa>{{$user->id}}</a></th>
+                    <th scope="row"><a href="{{ route('admin.users.edit', $user->id) }}">{{$user->id}}</a></th>
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->created_at}}</td>
                     <td>
-                        <!-- TODO 詳細実装時に -->
-                        <button type="button" class="btn btn-secondary">詳細</button>
+                        <a class="btn btn-secondary" href="{{ route('admin.users.edit', $user->id) }}">詳細</a>
                     </td>
                     <td>
                         <!-- TODO 削除実装時に -->
-                        <button type="button" class="btn btn-secondary">削除</button>
+                        <a class="btn btn-secondary" href=#>削除</a>
                     </td>
                 </tr>
             @endforeach
