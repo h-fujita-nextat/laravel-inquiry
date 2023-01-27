@@ -54,7 +54,7 @@ class AdminUserController extends Controller
 
     /**
      * @param StorePost $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store(StorePost $request): RedirectResponse
     {
@@ -79,9 +79,10 @@ class AdminUserController extends Controller
     }
 
     /**
+     * @param UpdatePut $request
+     * @param int $id
      * @return RedirectResponse
      */
-
     public function update(UpdatePut $request, int $id): RedirectResponse
     {
         $user = User::query()->findOrFail($id);
@@ -93,7 +94,7 @@ class AdminUserController extends Controller
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @return RedirectResponse
      */
     public function destroy(int $id): RedirectResponse
