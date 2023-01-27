@@ -41,8 +41,11 @@
                         <a class="btn btn-secondary" href="{{ route('admin.users.edit', $user->id) }}">詳細</a>
                     </td>
                     <td>
-                        <!-- TODO 削除実装時に -->
-                        <a class="btn btn-secondary" href=#>削除</a>
+                        <form action="{{ route('admin.users.destroy', ['id'=>$user->id]) }}" method="post">
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit" class="btn btn-secondary">削除</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
