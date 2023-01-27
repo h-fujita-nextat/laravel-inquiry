@@ -15,6 +15,18 @@
         </ul>
     @endif
 
+    {{-- 検索フォーム --}}
+    <div class="row">
+        <div class="col-sm-4">
+            <form class="form-inline">
+                <div class="form-group">
+                    <input type="text" name="keyword" class="form-control" placeholder="名前またはメードアドレス">
+                </div>
+                <input type="submit" value="検索" class="btn btn-primary">
+            </form>
+        </div>
+    </div>
+
     <div style="margin: 24px 48px">
         <table class="table">
             <thead>

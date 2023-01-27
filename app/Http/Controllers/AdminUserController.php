@@ -29,10 +29,19 @@ class AdminUserController extends Controller
      */
     public function index(IndexGet $request): View
     {
-        $page = $request->validated('page') ?? self::DEFAULT_PAGE;
-        $users = User::query()->paginate(self::PER_PAGE, ['*'], 'page', $page);
+        $keyword = $request->input('keyword');
+        $query = User::query();
 
-        return view('adminUsers.index', compact('users'));
+        if (!empty($keyword)) {
+            $query->where('name', 'like', '%' . $keyword . '%')
+                ->orWhere('email', 'like', '%' . $keyword . '%');
+        }
+
+        $page = $request->validated('page') ?? self::DEFAULT_PAGE;
+        $users = $query->paginate(self::PER_PAGE, ['*'], 'page', $page);
+
+
+        return view('adminUsers.index', compact('users'))->with('keyword', $keyword);
     }
 
     /**
