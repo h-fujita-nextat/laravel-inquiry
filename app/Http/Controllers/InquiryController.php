@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Http\Requests\InquiryStoreRequest;
+use App\Http\Requests\User\IndexGet;
 use App\Models\Inquiry;
 use App\Models\User;
 use App\Services\InquiryService;
@@ -33,11 +34,33 @@ class InquiryController extends Controller
     }
 
     /**
+     * 1ページあたりの表示件数
+     */
+    private const PER_PAGE = 10;
+
+    /**
+     * 初期ページ
+     */
+    private const DEFAULT_PAGE = 1;
+
+    /**
+     * @param IndexGet $request
      * @return View
      */
-    public function index(): View
+    public function index(IndexGet $request): View
     {
-        return view('inquiry');
+        $keyword = $request->input('keyword');
+        $query = Inquiry::query();
+
+        if (!empty($keyword)) {
+            $query->where('content', 'like', '%' . $keyword . '%');
+        }
+
+        $page = $request->validated('page') ?? self::DEFAULT_PAGE;
+        $contents = $query->paginate(self::PER_PAGE, ['*'], 'page', $page);
+
+
+        return view('inquiry', compact('contents'))->with('keyword', $keyword);
     }
 
     /**
