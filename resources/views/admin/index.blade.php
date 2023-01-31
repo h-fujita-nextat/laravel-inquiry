@@ -20,7 +20,7 @@
         <div class="col-sm-4">
             <form class="form-inline" action="{{ route('admin.index') }}" method="get">
                 <div class="form-group">
-                    <input type="text" name="keyword" class="form-control" placeholder="名前またはメードアドレス">
+                    <input type="text" name="keyword" class="form-control" placeholder="お問い合わせ内容を入力してください">
                 </div>
                 <input type="submit" value="検索" class="btn btn-primary">
             </form>
