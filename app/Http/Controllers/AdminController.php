@@ -30,11 +30,17 @@ class AdminController extends Controller
      */
     public function index(IndexGet $request): View
     {
+        $keyword = $request->input('keyword');
+        $query = Inquiry::query();
+        if (!empty($keyword)) {
+            $query->where('content', 'like', '%' . $keyword . '%');
+        }
+
         $page = $request->validated('page') ?? self::DEFAULT_PAGE;
-        $inquiries = Inquiry::query()->orderBy('created_at', 'desc')
+        $inquiries = $query->orderBy('created_at', 'desc')
             ->paginate(self::PER_PAGE, ['*'], 'page', $page);
 
-        return view('admin.index', compact('inquiries'));
+        return view('admin.index', compact('inquiries', 'keyword'));
     }
 
     /**
