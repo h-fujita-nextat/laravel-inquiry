@@ -41,7 +41,7 @@ class AdminUserController extends Controller
         $users = $query->paginate(self::PER_PAGE, ['*'], 'page', $page);
 
 
-        return view('adminUsers.index', compact('users'))->with('keyword', $keyword);
+        return view('adminUsers.index', compact('users', 'keyword'));
     }
 
     /**
