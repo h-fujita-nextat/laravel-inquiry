@@ -29,10 +29,19 @@ class AdminUserController extends Controller
      */
     public function index(IndexGet $request): View
     {
-        $page = $request->validated('page') ?? self::DEFAULT_PAGE;
-        $users = User::query()->paginate(self::PER_PAGE, ['*'], 'page', $page);
+        $keyword = $request->input('keyword');
+        $query = User::query();
 
-        return view('adminUsers.index', compact('users'));
+        if (!empty($keyword)) {
+            $query->where('name', 'like', '%' . $keyword . '%')
+                ->orWhere('email', 'like', '%' . $keyword . '%');
+        }
+
+        $page = $request->validated('page') ?? self::DEFAULT_PAGE;
+        $users = $query->paginate(self::PER_PAGE, ['*'], 'page', $page);
+
+
+        return view('adminUsers.index', compact('users', 'keyword'));
     }
 
     /**
@@ -45,7 +54,7 @@ class AdminUserController extends Controller
 
     /**
      * @param StorePost $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store(StorePost $request): RedirectResponse
     {
@@ -74,7 +83,6 @@ class AdminUserController extends Controller
      * @param int $id
      * @return RedirectResponse
      */
-
     public function update(UpdatePut $request, int $id): RedirectResponse
     {
         $user = User::query()->find($id);
@@ -89,7 +97,7 @@ class AdminUserController extends Controller
     }
 
     /**
-     * @param $id
+     * @param int $id
      * @return RedirectResponse
      */
     public function destroy(int $id): RedirectResponse

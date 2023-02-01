@@ -15,6 +15,18 @@
         </ul>
     @endif
 
+    {{-- 検索フォーム --}}
+    <div class="row">
+        <div class="col-sm-4">
+            <form class="form-inline" action="{{ route('admin.users.index') }}" method="get">
+                <div class="form-group">
+                    <input type="text" name="keyword" class="form-control" placeholder="名前またはメールアドレス">
+                </div>
+                <input type="submit" value="検索" class="btn btn-primary">
+            </form>
+        </div>
+    </div>
+
     <div style="margin: 24px 48px">
         <table class="table">
             <thead>
